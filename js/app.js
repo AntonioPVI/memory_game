@@ -52,4 +52,17 @@ document.addEventListener('DOMContentLoaded', ()=>{
         },
     ]
 
+    const container = document.querySelector('.container');
+    
+    // Create your board
+    function createBoard(params) {
+        for (let i = 0; i < cardArray.length; i++) {
+            let card = document.createElement('img');
+            card.setAttribute('src', '');
+            // Values
+            card.setAttribute('data-i', i);
+            container.appendChild(card);
+        }
+    }
+
 });
