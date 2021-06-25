@@ -1,54 +1,54 @@
-document.addEventListener('DOMContentLoaded', ()=>{
+document.addEventListener('DOMContentLoaded', () => {
 
     //Card options
     const cardArray = [
         {
             name: 'fries',
-            img:'img/fries.png'
+            img: 'img/fries.png'
         },
         {
             name: 'fries',
-            img:'img/fries.png'
+            img: 'img/fries.png'
         },
         {
             name: 'cheeseburger',
-            img:'img/cheeseburger.png'
+            img: 'img/cheeseburger.png'
         },
         {
             name: 'cheeseburger',
-            img:'img/cheeseburger.png'
+            img: 'img/cheeseburger.png'
         },
         {
             name: 'hotdog',
-            img:'img/hotdog.png'
+            img: 'img/hotdog.png'
         },
         {
             name: 'hotdog',
-            img:'img/hotdog.png'
+            img: 'img/hotdog.png'
         },
         {
             name: 'ice-cream',
-            img:'img/ice-cream.png'
+            img: 'img/ice-cream.png'
         },
         {
             name: 'ice-cream',
-            img:'img/ice-cream.png'
+            img: 'img/ice-cream.png'
         },
         {
             name: 'milkshake',
-            img:'img/milkshake.png'
+            img: 'img/milkshake.png'
         },
         {
             name: 'milkshake',
-            img:'img/milkshake.png'
+            img: 'img/milkshake.png'
         },
         {
             name: 'pizza',
-            img:'img/pizza.png'
+            img: 'img/pizza.png'
         },
         {
             name: 'pizza',
-            img:'img/pizza.png'
+            img: 'img/pizza.png'
         },
     ]
 
@@ -56,56 +56,86 @@ document.addEventListener('DOMContentLoaded', ()=>{
 
     const container = document.querySelector('.container');
     const result = document.querySelector('#result');
-    let cardChosen = [];
+    let cardsChosen = [];
     let cardsChosenId = [];
     let cardsWon = [];
-    
+
     // Create your board
     function createBoard(params) {
         for (let i = 0; i < cardArray.length; i++) {
             let card = document.createElement('img');
-            card.setAttribute('src', 'img/blanck.png');
+            card.setAttribute('src', 'img/blank.png');
             // Values
-            card.setAttribute('data-i', i);
-            //card.addEventListener('click', flipcard)
+            card.setAttribute('data-id', i);
+            card.addEventListener('click', flipCard);
             container.appendChild(card);
         }
     }
 
     // Function check for matches
     function checkForMatch() {
-        let cards = document.querySelector('img');
-        const optionOneId = cardChosen[0];
-        const optionTwoId = cardChosen[1];
+        const cards = document.querySelectorAll('img');
+        const optionOneId = cardsChosenId[0];
+        const optionTwoId = cardsChosenId[1];
 
-        if (cardChosen[0] === cardChosen[1]) {
-            alert('You found a match!');
-            cards[optionOneId].setAttribute('src', 'img/white.png');
-            cards[optionTowId].setAttribute('src', 'img/white.png');
-
-            cardsWon.push(cardChosen);
-        }else {
-            cards[optionOneId].setAttribute('src', 'img/blanck.png');
-            cards[optionTowId].setAttribute('src', 'img/blanck.png');
-            alert('Sorry, try again')
+        if (optionOneId == optionTwoId) {
+            cards[optionOneId].setAttribute('src', 'img/blank.png');
+            cards[optionTwoId].setAttribute('src', 'img/blank.png');
+            alert('You have clicked the same image!');
         }
-
-        cardChosen = [];
+        else if (cardsChosen[0] === cardsChosen[1]) {
+            alert('You found a match');
+            // cards[optionOneId].setAttribute('src', 'img/white.png');
+            // cards[optionTwoId].setAttribute('src', 'img/white.png');
+            cards[optionOneId].removeEventListener('click', flipCard);
+            cards[optionTwoId].removeEventListener('click', flipCard);
+            cardsWon.push(cardsChosen);
+        } else {
+            cards[optionOneId].setAttribute('src', 'img/blank.png');
+            cards[optionTwoId].setAttribute('src', 'img/blank.png');
+            alert('Sorry, try again');
+        }
+        cardsChosen = [];
         cardsChosenId = [];
-        result.textContent = cardsWon.length;
-
-        if (cardsWon.length === cardArray.length/2) {
-            result.textContent = 'Congratulations! you found them all!';
+        resultDisplay.textContent = cardsWon.length;
+        if (cardsWon.length === cardArray.length / 2) {
+            resultDisplay.textContent = 'Congratulations! You found them all!';
         }
     }
+
+    // function checkForMatch() {
+    //     let cards = document.querySelector('img');
+    //     const optionOneId = cardsChosen[0];
+    //     const optionTwoId = cardsChosen[1];
+
+    //     if (cardsChosen[0] === cardsChosen[1]) {
+    //         alert('You found a match!');
+    //         cards[optionOneId].setAttribute('src', 'img/white.png');
+    //         cards[optionTwoId].setAttribute('src', 'img/white.png');
+
+    //         cardsWon.push(cardsChosen);
+    //     }else {
+    //         cards[optionOneId].setAttribute('src', 'img/blanck.png');
+    //         cards[optionTwoId].setAttribute('src', 'img/blanck.png');
+    //         alert('Sorry, try again');
+    //     }
+
+    //     cardsChosen = [];
+    //     cardsChosenId = [];
+    //     result.textContent = cardsWon.length;
+
+    //     if (cardsWon.length === cardArray.length/2) {
+    //         result.textContent = 'Congratulations! you found them all!';
+    //     }
+    // }
 
     // Function flip card
     function flipCard() {
         let cardId = this.getAttribute('data-id');
-        cardChosen.push(cardArray[cardId].name);
+        cardsChosen.push(cardArray[cardId].name);
         cardsChosenId.push(cardId);
         this.setAttribute('src', cardArray[cardId].img);
-        if (cardChosen.length === 2) {
+        if (cardsChosen.length === 2) {
             setTimeout(checkForMatch, 500);
         }
     }
