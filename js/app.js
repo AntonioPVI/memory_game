@@ -97,9 +97,9 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         cardsChosen = [];
         cardsChosenId = [];
-        resultDisplay.textContent = cardsWon.length;
+        result.textContent = cardsWon.length;
         if (cardsWon.length === cardArray.length / 2) {
-            resultDisplay.textContent = 'Congratulations! You found them all!';
+            result.textContent = 'Congratulations! You found them all!';
         }
     }
 
