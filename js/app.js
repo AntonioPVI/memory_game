@@ -52,6 +52,8 @@ document.addEventListener('DOMContentLoaded', ()=>{
         },
     ]
 
+    cardArray.sort(() => 0.5 - Math.random());
+
     const container = document.querySelector('.container');
     const result = document.querySelector('#result');
     let cardChosen = [];
