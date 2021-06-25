@@ -103,32 +103,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // function checkForMatch() {
-    //     let cards = document.querySelector('img');
-    //     const optionOneId = cardsChosen[0];
-    //     const optionTwoId = cardsChosen[1];
-
-    //     if (cardsChosen[0] === cardsChosen[1]) {
-    //         alert('You found a match!');
-    //         cards[optionOneId].setAttribute('src', 'img/white.png');
-    //         cards[optionTwoId].setAttribute('src', 'img/white.png');
-
-    //         cardsWon.push(cardsChosen);
-    //     }else {
-    //         cards[optionOneId].setAttribute('src', 'img/blanck.png');
-    //         cards[optionTwoId].setAttribute('src', 'img/blanck.png');
-    //         alert('Sorry, try again');
-    //     }
-
-    //     cardsChosen = [];
-    //     cardsChosenId = [];
-    //     result.textContent = cardsWon.length;
-
-    //     if (cardsWon.length === cardArray.length/2) {
-    //         result.textContent = 'Congratulations! you found them all!';
-    //     }
-    // }
-
     // Function flip card
     function flipCard() {
         let cardId = this.getAttribute('data-id');
