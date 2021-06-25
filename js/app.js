@@ -58,11 +58,14 @@ document.addEventListener('DOMContentLoaded', ()=>{
     function createBoard(params) {
         for (let i = 0; i < cardArray.length; i++) {
             let card = document.createElement('img');
-            card.setAttribute('src', '');
+            card.setAttribute('src', 'img/blanck');
             // Values
             card.setAttribute('data-i', i);
+            //card.addEventListener('click', flipcard)
             container.appendChild(card);
         }
     }
+
+    createBoard();
 
 });
